@@ -43,7 +43,7 @@ class ContractLinking extends ChangeNotifier {
       _setLoading(true);
       _clearError();
 
-      print("🔗 Initializing blockchain connection...");
+      print("Initializing blockchain connection...");
       
       // Initialize Web3 client
       _client = Web3Client(
@@ -59,10 +59,10 @@ class ContractLinking extends ChangeNotifier {
       await _connectToDeployedContract();
       await _fetchCurrentName();
       
-      print("✅ Blockchain connection established successfully!");
+      print("Blockchain connection established successfully!");
     } catch (e) {
       _setError("Failed to connect to blockchain: $e");
-      print("❌ Connection error: $e");
+      print("Connection error: $e");
     } finally {
       _setLoading(false);
     }
@@ -70,7 +70,7 @@ class ContractLinking extends ChangeNotifier {
 
   Future<void> _loadContractAbi() async {
     try {
-      print("📄 Loading contract ABI...");
+      print("Loading contract ABI...");
       
       // Load compiled contract JSON
       String abiString = await rootBundle.loadString("src/artifacts/HelloWorld.json");
@@ -91,7 +91,7 @@ class ContractLinking extends ChangeNotifier {
       for (var networkId in networkIds) {
         if (networks.containsKey(networkId)) {
           _contractAddress = EthereumAddress.fromHex(networks[networkId]["address"]);
-          print("📍 Contract address (network $networkId): ${_contractAddress.hex}");
+          print("Contract address (network $networkId): ${_contractAddress.hex}");
           return;
         }
       }
@@ -100,19 +100,19 @@ class ContractLinking extends ChangeNotifier {
       if (networks.isNotEmpty) {
         var firstNetwork = networks.keys.first;
         _contractAddress = EthereumAddress.fromHex(networks[firstNetwork]["address"]);
-        print("📍 Contract address (network $firstNetwork): ${_contractAddress.hex}");
+        print("Contract address (network $firstNetwork): ${_contractAddress.hex}");
       } else {
         throw Exception("No deployed networks found in contract ABI");
       }
     } catch (e) {
-      print("❌ ABI loading error: $e");
+      print("ABI loading error: $e");
       rethrow;
     }
   }
 
   Future<void> _initializeCredentials() async {
     try {
-      print("🔑 Initializing credentials...");
+      print("Initializing credentials...");
       
       // Create credentials from private key
       _credentials = EthPrivateKey.fromHex(_privateKey);
@@ -121,34 +121,34 @@ class ContractLinking extends ChangeNotifier {
       final address = await _credentials.extractAddress();
       final balance = await _client.getBalance(address);
       
-      print("✅ Account initialized");
+      print("Account initialized");
       print("   Address: ${address.hex}");
       print("   Balance: ${balance.getValueInUnit(EtherUnit.ether).toStringAsFixed(4)} ETH");
       
     } catch (e) {
-      print("❌ Credentials error: $e");
+      print("Credentials error: $e");
       rethrow;
     }
   }
 
   Future<void> _connectToDeployedContract() async {
     try {
-      print("🤝 Connecting to deployed contract...");
+      print("Connecting to deployed contract...");
       
       // Create deployed contract instance
       _contract = DeployedContract(_contractAbi, _contractAddress);
       
-      print("✅ Contract connection established");
+      print("Contract connection established");
       
     } catch (e) {
-      print("❌ Contract connection error: $e");
+      print("Contract connection error: $e");
       rethrow;
     }
   }
 
   Future<void> _fetchCurrentName() async {
     try {
-      print("🔍 Fetching current name from contract...");
+      print("Fetching current name from contract...");
       
       // Call the yourName() function
       final function = _contract.function('yourName');
@@ -161,15 +161,15 @@ class ContractLinking extends ChangeNotifier {
       // Process result
       if (result.isNotEmpty) {
         _deployedName = result[0].toString();
-        print("✅ Current name: '$_deployedName'");
+        print("Current name: '$_deployedName'");
       } else {
         _deployedName = "No name set";
-        print("⚠️ No name returned from contract");
+        print("No name returned from contract");
       }
       
       _clearError();
     } catch (e, stackTrace) {
-      print("❌ Name fetch error: $e");
+      print("Name fetch error: $e");
       print("Stack trace: $stackTrace");
       _deployedName = "Error loading name";
       _setError("Failed to fetch name: $e");
@@ -190,7 +190,7 @@ class ContractLinking extends ChangeNotifier {
         return;
       }
       
-      print("✏️ Setting name to: '$nameToSet'");
+      print("Setting name to: '$nameToSet'");
       
       _setTransactionPending(true);
       _setTransactionStatus("Preparing transaction...");
@@ -216,7 +216,7 @@ class ContractLinking extends ChangeNotifier {
         chainId: _chainId,
       );
       
-      print("✅ Transaction sent! Hash: $_lastTransactionHash");
+      print("Transaction sent! Hash: $_lastTransactionHash");
       _setTransactionStatus("Waiting for confirmation...");
       
       // Wait for transaction to be mined
@@ -226,11 +226,11 @@ class ContractLinking extends ChangeNotifier {
       _setTransactionStatus("Updating display...");
       await _fetchCurrentName();
       
-      print("✅ Name successfully updated to '$nameToSet'");
+      print("Name successfully updated to '$nameToSet'");
       _setTransactionStatus("Transaction completed successfully!");
       
     } catch (e, stackTrace) {
-      print("❌ Set name error: $e");
+      print("Set name error: $e");
       print("Stack trace: $stackTrace");
       _setError("Failed to set name: $e");
       _setTransactionStatus("Transaction failed");
@@ -243,7 +243,7 @@ class ContractLinking extends ChangeNotifier {
 
   Future<void> _waitForTransactionConfirmation(String txHash) async {
     try {
-      print("⏳ Waiting for transaction confirmation...");
+      print("Waiting for transaction confirmation...");
       
       bool isConfirmed = false;
       int attempts = 0;
@@ -257,7 +257,7 @@ class ContractLinking extends ChangeNotifier {
           final receipt = await _client.getTransactionReceipt(txHash);
           if (receipt != null) {
             isConfirmed = true;
-            print("✅ Transaction confirmed in block ${receipt.blockNumber}");
+            print("Transaction confirmed in block ${receipt.blockNumber}");
             _setTransactionStatus("Transaction confirmed!");
           }
         } catch (e) {
@@ -274,7 +274,7 @@ class ContractLinking extends ChangeNotifier {
       }
       
     } catch (e) {
-      print("❌ Transaction confirmation error: $e");
+      print("Transaction confirmation error: $e");
       rethrow;
     }
   }
@@ -315,7 +315,7 @@ class ContractLinking extends ChangeNotifier {
       final address = await _credentials.extractAddress();
       return await _client.getBalance(address);
     } catch (e) {
-      print("❌ Balance check error: $e");
+      print("Balance check error: $e");
       return EtherAmount.fromUnitAndValue(EtherUnit.wei, BigInt.zero);
     }
   }
@@ -324,7 +324,7 @@ class ContractLinking extends ChangeNotifier {
     try {
       return await _client.getBlockNumber();
     } catch (e) {
-      print("❌ Block number error: $e");
+      print("Block number error: $e");
       return 0;
     }
   }
