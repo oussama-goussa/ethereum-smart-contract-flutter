@@ -95,10 +95,14 @@ screenshots/              # Application screenshots
 
 ## 🛠️ Tech Stack
 
+<div align="center">
+  
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter)
 ![Dart](https://img.shields.io/badge/Dart-2.19-purple?logo=dart)
 ![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?logo=ethereum)
 ![License](https://img.shields.io/badge/License-MIT-green)
+
+</div>
 
 ## 🤝 Contributing
 
