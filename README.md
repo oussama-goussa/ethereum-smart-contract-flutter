@@ -87,6 +87,12 @@ screenshots/              # Application screenshots
 
 Feel free to fork this project and submit pull requests with improvements.
 
----
-**Built with ❤️ by Oussama GOUSSA**
-```
+<div align="center">
+Built with ❤️ by Oussama GOUSSA
+⭐ Star this repo if you find it useful!
+
+https://img.shields.io/github/stars/oussama-goussa/ethereum-smart-contract-flutter?style=for-the-badge
+https://img.shields.io/github/forks/oussama-goussa/ethereum-smart-contract-flutter?style=for-the-badge
+https://img.shields.io/github/issues/oussama-goussa/ethereum-smart-contract-flutter?style=for-the-badge
+
+</div> ```
