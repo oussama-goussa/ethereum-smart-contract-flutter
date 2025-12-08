@@ -95,4 +95,9 @@ https://img.shields.io/github/stars/oussama-goussa/ethereum-smart-contract-flutt
 https://img.shields.io/github/forks/oussama-goussa/ethereum-smart-contract-flutter?style=for-the-badge
 https://img.shields.io/github/issues/oussama-goussa/ethereum-smart-contract-flutter?style=for-the-badge
 
-</div> ```
+</div>
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-2.19-purple?logo=dart)
+![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?logo=ethereum)
+![License](https://img.shields.io/badge/License-MIT-green)
+![GitHub stars](https://img.shields.io/github/stars/oussama-goussa/ethereum-smart-contract-flutter?style=social)
