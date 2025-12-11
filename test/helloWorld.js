@@ -1,10 +1,10 @@
 const HelloWorld = artifacts.require("HelloWorld");
 
 contract("HelloWorld", () => {
-    it("should set name correctly", async () => {
-        const instance = await HelloWorld.deployed();
-        await instance.setName("User Name");
-        const name = await instance.yourName();
-        assert.equal(name, "User Name");
+    it("Hello World Testing", async () => {
+        const helloWorld = await HelloWorld.deployed();
+        await helloWorld.setName("User Name");
+        const result = await helloWorld.yourName();
+        assert(result === "User Name");
     });
 });
