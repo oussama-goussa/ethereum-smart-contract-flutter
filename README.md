@@ -2,8 +2,13 @@
 
 A clean and professional Flutter application demonstrating Ethereum blockchain integration with smart contracts.
 
-![DApp Screenshot](screenshots/Screenshot_1.png)
-![Ganache Screenshot](screenshots/Screenshot_2.png)
+<div align="center">
+  ![DApp Screenshot](screenshots/Screenshot_1.png)
+</div>
+
+<div align="center">
+  ![Ganache Screenshot](screenshots/Screenshot_2.png)
+</div>
 
 ## 🛠️ Tech Stack
 
